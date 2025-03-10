@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details - Zoro Store</title>
+    <link rel="stylesheet" href="style/product-details.css">
+    <style>
+        /* Simple styles for the cart summary display */
+        #cart-summary {
+            position: fixed;
+            top: 80px;
+            right: 20px;
+            width: 300px;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 15px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            display: none;
+            z-index: 1000;
+        }
+        #cart-summary img {
+            width: 80px;
+            height: auto;
+        }
+    </style>
+    <script>
+        function addToCart(productName, productPrice, productImage) {
+            // Get cart from local storage, or initialize as an empty array if not found
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            // Create a new product object
+            const product = { name: productName, price: productPrice, image: productImage };
+
+            // Add the product to the cart array
+            cart.push(product);
+
+            // Save the updated cart to local storage
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            // Display product info in the cart summary
+            showCartSummary(product);
+        }
+
+        function showCartSummary(product) {
+            const cartSummary = document.getElementById('cart-summary');
+            cartSummary.innerHTML = `
+                <h3>Added to Cart</h3>
+                <img src="${product.image}" alt="${product.name}">
+                <p><strong>${product.name}</strong></p>
+                <p>Price: ${product.price}</p>
+                <button onclick="window.location.href='cart.html'">Go to Cart</button>
+                <button onclick="closeCartSummary()">Close</button>
+            `;
+            cartSummary.style.display = 'block';
+        }
+
+        function closeCartSummary() {
+            const cartSummary = document.getElementById('cart-summary');
+            cartSummary.style.display = 'none';
+        }
+    </script>
+</head>
+<body>
+
+    <header>
+        <h1>Zoro Store</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Product Details -->
+    <section class="product-detail">
+        <div class="product">
+            <img src="images/battery-2.jpg" alt="Mobile Battery">
+            <h2>Mobile Battery</h2>
+            <p>High-quality replacement battery for various mobile models.</p>
+            <p><strong>Price: $15.99</strong></p>
+            <button onclick="addToCart('Mobile Battery', '$15.99', 'images/battery-2.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="images/speaker.jpg" alt="Speaker">
+            <h2>Mobile Speaker</h2>
+            <p>High-quality replacement speaker for various mobile models.</p>
+            <p><strong>Price: $15.99</strong></p>
+            <button onclick="addToCart('Mobile Speaker', '$15.99', 'images/speaker.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="images/LCD-DISPLAY.jpg" alt="LCD Display">
+            <h2>Mobile LCD Display</h2>
+            <p>High-quality replacement for various mobile models.</p>
+            <p><strong>Price: $49.99</strong></p>
+            <button onclick="addToCart('Mobile LCD Display', '$49.99', 'images/LCD-DISPLAY.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="images/pannel-1.jpg" alt="Panel">
+            <h2>Mobile Panel</h2>
+            <p>High-quality replacement panel for various mobile models.</p>
+            <p><strong>Price: $49.99</strong></p>
+            <button onclick="addToCart('Mobile Panel', '$49.99', 'images/pannel-1.jpg')">Add to Cart</button>
+        </div>
+
+        <div class="product">
+            <img src="images/charger.webp" alt="Fast Charger">
+            <h2>Mobile Fast Charger</h2>
+            <p>High-quality replacement charger for various mobile models.</p>
+            <p><strong>Price: $15.99</strong></p>
+            <button onclick="addToCart('Mobile Fast Charger', '$15.99', 'images/charger.webp')">Add to Cart</button>
+        </div>
+    </section>
+
+    <!-- Cart Summary Popup -->
+    <div id="cart-summary"></div>
+
+</body>
+</html>

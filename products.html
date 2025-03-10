@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products - Zoro Store</title>
+    <link rel="stylesheet" href="style/product.css">
+</head>
+<body>
+
+
+    
+    <header>
+        <h1>Zoro Store</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="products.html">Products</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="product-list">
+        <div class="product">
+            <img src="images/battery-2.jpg" alt="Mobile Battery">
+            <h2>Mobile Battery</h2>
+            <p>$15.99</p>
+            <a href="product-details.html" class="btn">View Details</a>
+        </div>
+
+        <div class="product">
+            <img src="images/speaker.jpg" alt="speaker">
+            <h2>speaker</h2>
+            <p>$15.99</p>
+            <a href="product-details.html" class="btn">View Details</a>
+        </div>
+
+        <div class="product">
+            <img src="images/LCD-DISPLAY.jpg" alt="LCD Display">
+            <h2>LCD Display</h2>
+            <p>$45.99</p>
+            <a href="product-details.html" class="btn">View Details</a>
+        </div>
+
+        <div class="product">
+            <img src="images/pannel-1.jpg" alt="pannel">
+            <h2>pannel</h2>
+            <p>$45.99</p>
+            <a href="product-details.html" class="btn">View Details</a>
+        </div>
+
+        <div class="product">
+            <img src="images/charger.webp" alt="Fast Charger">
+            <h2>Fast Charger</h2>
+            <p>$10.99</p>
+            <a href="product-details.html" class="btn">View Details</a>
+        </div>
+    </section>
+
+<script>
+    function addToCart(productName, productPrice) {
+    let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+    const product = {
+        name: productName,
+        price: parseFloat(productPrice) // make sure it's a number
+    };
+
+    cart.push(product);
+
+    localStorage.setItem('cart', JSON.stringify(cart));
+
+    alert(`${productName} has been added to your cart.`);
+    
+    // Optional: Redirect to payment directly
+    // window.location.href = "payment.html";
+}
+
+</script>
+
+
+</body>
+</html>
